@@ -4,7 +4,7 @@ gem "bootsnap", require: false
 gem "importmap-rails"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 8.0.1"
 gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
