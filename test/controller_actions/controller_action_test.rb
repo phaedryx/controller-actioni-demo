@@ -229,7 +229,7 @@ describe ControllerAction do
 
   describe ".error_response" do
     it "returns a hash with the error message, errors, and meta" do
-      widget = Widget.new(name: nil, material: "none")
+      widget = Widget.new(name: nil, sku: nil, material: "none")
       widget.valid?
 
       actual = ControllerAction.error_response(
@@ -243,6 +243,7 @@ describe ControllerAction do
           error_message: "custom error message",
           errors: {
             name: [ "can't be blank" ],
+            sku: [ "can't be blank" ],
             material: [ "is not included in the list" ]
           },
           meta: {

@@ -22,24 +22,25 @@ class ControllerAction
       raise MissingCallMethodError unless instance.respond_to?(:call)
       raise MissingSchemaError if schema.nil? && params.present?
 
-      return response(instance.call(params: params, context: context)) if params.blank?
+      return response(instance.call(params:, context:)) if params.blank?
 
-      errors = validate_params(params)
+      params = standard_params(params)
+      errors = schema.call(params).errors # rubocop:disable Rails/DeprecatedActiveModelErrorsMethods
 
-      if errors.present?
+      if errors.any?
         return error_response(
           status: :unprocessable_content,
-          errors: errors,
+          errors: errors.to_h,
           error_message: "Invalid parameters"
         )
       end
 
-      response(instance.call(params: params.to_h, context: context))
+      response(instance.call(params:, context:))
     end
 
-    def validate_params(params)
+    def standard_params(params)
       params = params.to_unsafe_h if params.is_a?(ActionController::Parameters)
-      schema.call(params).errors.to_h # rubocop:disable Rails/DeprecatedActiveModelErrorsMethods
+      params.to_h.symbolize_keys
     end
 
     def success?(result)
