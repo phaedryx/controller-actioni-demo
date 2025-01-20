@@ -5,10 +5,10 @@ gem "blueprinter", "~> 1.1", ">= 1.1.2"
 gem "dry-schema", "~> 1.14"
 gem "importmap-rails"
 gem "minitest-reporters", "~> 1.7", ">= 1.7.1"
-gem "minitest-rails", "~> 7.2.0"
+gem "minitest-rails", "~> 8.0.0"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 8.0.1"
 gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
