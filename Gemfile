@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "bootsnap", require: false
+gem "blueprinter", "~> 1.1", ">= 1.1.2"
 gem "dry-schema", "~> 1.14"
 gem "importmap-rails"
 gem "minitest-reporters", "~> 1.7", ">= 1.7.1"
