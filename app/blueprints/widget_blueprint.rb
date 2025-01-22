@@ -9,9 +9,13 @@ class WidgetBlueprint < ApplicationBlueprint
     include_view :base
   end
 
+  view :create do
+    include_view :base
+  end
+
   view :update do
     include_view :base
-    fields :created_at, :updated_at
+    fields :updated_at
   end
 
   view :show do

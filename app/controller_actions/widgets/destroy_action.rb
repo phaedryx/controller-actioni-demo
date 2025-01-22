@@ -5,7 +5,7 @@ module Widgets
     end
 
     def call(params:, **)
-      widget = Widget.find(params[:id])
+      widget = Widget.find_by(id: params[:id])
 
       return { status: :not_found, errors: { id: [ "not found" ] } } unless widget
 
