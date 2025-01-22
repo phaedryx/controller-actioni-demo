@@ -24,8 +24,8 @@ class ControllerAction
 
       return response(instance.call(params:, context:)) if params.blank?
 
-      params = standard_params(params)
-      errors = schema.call(params).errors # rubocop:disable Rails/DeprecatedActiveModelErrorsMethods
+      params = standardize_params(params)
+      errors = schema.call(params).errors
 
       if errors.any?
         return error_response(
@@ -38,9 +38,9 @@ class ControllerAction
       response(instance.call(params:, context:))
     end
 
-    def standard_params(params)
+    def standardize_params(params)
       params = params.to_unsafe_h if params.is_a?(ActionController::Parameters)
-      params.to_h.symbolize_keys
+      schema.call(params).to_h
     end
 
     def success?(result)
@@ -71,6 +71,7 @@ class ControllerAction
         status: status
       }
     end
+
     def success_response(resource:, status:, meta: {})
       {
         json: resource.merge(meta: default_meta.merge(meta)),
