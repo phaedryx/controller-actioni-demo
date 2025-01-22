@@ -18,4 +18,8 @@ class WidgetBlueprint < ApplicationBlueprint
     include_view :base
     fields :created_at, :updated_at
   end
+
+  view :destroy do
+    fields :id
+  end
 end
